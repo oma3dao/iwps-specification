@@ -13,63 +13,63 @@ Key capabilities of IWPS include:
 
 ## Content
 
-Executive Summary........................................................................2
-Contents.................................................................................3
-1 Introduction...........................................................................5
-1.1 Background...........................................................................5
-1.2 General Considerations...............................................................5
-1.3 Scope................................................................................5
-2 References.............................................................................6
-2.1 Normative References.................................................................6
-2.2 Informative References...............................................................6
-3 Definitions and Abbreviations..........................................................7
-3.1 Modal Verbs Terminology..............................................................7
-3.2 Abbreviations........................................................................9
-3.3 Definitions..........................................................................9
-3.4 Taxonomy............................................................................10
-4 Introduction..........................................................................11
-4.1 Actors..............................................................................11
-4.2 Assumptions.........................................................................12
-4.2.1 Communication Assumptions.........................................................12
-4.2.2 Client Implementation Assumptions.................................................12
-4.2.3 Cloud Implementation Assumptions..................................................12
-4.2 API Overview........................................................................13
-4.3 Extension Frameworks................................................................13
-5 Specification (Normative).............................................................14
-5.1 Mode of Operation...................................................................14
-5.1.1 API Flow Overview.................................................................14
-5.1.2 Teleport API Communication Options................................................15
-5.2 Uniform Resource Identifiers........................................................19
-5.2.1 URI Formats.......................................................................19
-5.2.2 Portal URI........................................................................20
-5.2.3 Destination URI...................................................................20
-5.3 Application Programming Interfaces..................................................21
-5.3.1 API Formats.......................................................................21
-5.3.2 Query API.........................................................................21
-5.3.3 Teleport API......................................................................25
-5.4 IWPS Authentication.................................................................27
-5.4.1 Overview..........................................................................27
-5.4.2 Internet Security.................................................................28
-5.4.3 OMA3 Security.....................................................................28
-5.4.4 Blockchain Node Security..........................................................28
-5.5 Identity Framework..................................................................29
-5.6 Asset Transfer Framework............................................................29
-5.7 Look and Feel Framework.............................................................30
-5.8 Payments Framework..................................................................30
-6 Examples (Informative)................................................................31
-6.1 Example Hybrid Communication Scenarios..............................................31
-6.2 Example Teleport Scenarios..........................................................32
-6.2.1 Traditional Source, Traditional Destination, Same Device..........................32
-6.2.2 Traditional Source, Traditional Destination, Different Devices....................34
-6.2.3 Traditional Source, Blockchain Destination, Same Device...........................35
-6.2.4 Blockchain Source, Hybrid Destination, Same Device................................36
-6.3 Example IWPS API Calls..............................................................38
-6.3.1 Query API.........................................................................38
-6.3.2 Teleport API- Cloud Communications................................................38
-6.3.3 Teleport API- Direct Communications...............................................38
-6.4 Example User Agent Flows............................................................38
-6.4.1 User Login........................................................................38
-6.4.2 Asset Transfer....................................................................40
+Executive Summary........................................................................2  
+Contents.............................................................................................3  
+1 Introduction...........................................................................5  
+1.1 Background...........................................................................5  
+1.2 General Considerations...............................................................5  
+1.3 Scope................................................................................5  
+2 References.............................................................................6  
+2.1 Normative References.................................................................6  
+2.2 Informative References...............................................................6  
+3 Definitions and Abbreviations..........................................................7  
+3.1 Modal Verbs Terminology..............................................................7  
+3.2 Abbreviations........................................................................9  
+3.3 Definitions..........................................................................9  
+3.4 Taxonomy............................................................................10  
+4 Introduction..........................................................................11  
+4.1 Actors..............................................................................11  
+4.2 Assumptions.........................................................................12  
+4.2.1 Communication Assumptions.........................................................12  
+4.2.2 Client Implementation Assumptions.................................................12  
+4.2.3 Cloud Implementation Assumptions..................................................12  
+4.2 API Overview........................................................................13  
+4.3 Extension Frameworks................................................................13  
+5 Specification (Normative).............................................................14  
+5.1 Mode of Operation...................................................................14  
+5.1.1 API Flow Overview.................................................................14  
+5.1.2 Teleport API Communication Options................................................15  
+5.2 Uniform Resource Identifiers........................................................19  
+5.2.1 URI Formats.......................................................................19  
+5.2.2 Portal URI........................................................................20  
+5.2.3 Destination URI...................................................................20  
+5.3 Application Programming Interfaces..................................................21  
+5.3.1 API Formats.......................................................................21  
+5.3.2 Query API.........................................................................21  
+5.3.3 Teleport API......................................................................25  
+5.4 IWPS Authentication.................................................................27  
+5.4.1 Overview..........................................................................27  
+5.4.2 Internet Security.................................................................28  
+5.4.3 OMA3 Security.....................................................................28  
+5.4.4 Blockchain Node Security..........................................................28  
+5.5 Identity Framework..................................................................29  
+5.6 Asset Transfer Framework............................................................29  
+5.7 Look and Feel Framework.............................................................30  
+5.8 Payments Framework..................................................................30  
+6 Examples (Informative)................................................................31  
+6.1 Example Hybrid Communication Scenarios..............................................31  
+6.2 Example Teleport Scenarios..........................................................32  
+6.2.1 Traditional Source, Traditional Destination, Same Device..........................32  
+6.2.2 Traditional Source, Traditional Destination, Different Devices....................34  
+6.2.3 Traditional Source, Blockchain Destination, Same Device...........................35  
+6.2.4 Blockchain Source, Hybrid Destination, Same Device................................36  
+6.3 Example IWPS API Calls..............................................................38  
+6.3.1 Query API.........................................................................38  
+6.3.2 Teleport API- Cloud Communications................................................38  
+6.3.3 Teleport API- Direct Communications...............................................38  
+6.4 Example User Agent Flows............................................................38  
+6.4.1 User Login........................................................................38  
+6.4.2 Asset Transfer....................................................................40  
 
 ## 1 Introduction
 
@@ -96,94 +96,80 @@ This is the base API specification for IWPS and is enough to implement a test ne
 This section contains the established conventions for the use of dedicated terms, describing normative and informative requirements. These terms have a specific meaning, as defined below. These are based on the definitions in the following organizations:
 - IETF, as defined in RFC 2119,
 - ETSI, as defined in Section 3.2 of the ETSI Drafting Rules, and
-- Bluetooth SIG.
-In the present document "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "MAY", "NEED NOT" are used to express normative requirements within the scope of the given specification.
-**SHALL** The term "SHALL" defines a _mandatory_ requirement. The course of action expressed in the requirement is to be strictly followed to conform to the specification. Deviations are not permitted.
-**SHALL NOT** The term "SHALL NOT" expresses the negative form of "SHALL". The course of action expressed in the requirement is _prohibited_. The requirement is to be followed to conform to the specification. Deviations are not permitted.
-**SHOULD** The term "SHOULD" defines a _recommended_ requirement. While several other possibilities exist, it is strongly recommended to follow the requirement, but not necessarily required. Valid reasons can exist to not follow the requirement, but the full implications are to be understood and carefully weighed before choosing a different course.
-**SHOULD NOT** The term "SHOULD NOT" expresses the negative form of "SHOULD". While the course of action expressed in the requirement is _deprecated_, it is not forbidden.
-**MAY** The term "MAY" defines a truly _optional_ requirement. The course of action expressed in the requirement is permissible within the scope of the specification. The implementor freely decides whether to implement an optional requirement. An implementation, which does not include an optional requirement, has to be prepared to interoperate with another implementation, which includes the option. Similarly, an implementation, which includes an optional requirement, has to be prepared to interoperate with another implementation, which does not include the option.
-**NEED NOT** The term "NEED NOT" expresses the negative form of "MAY".
-In the present document terms like "can", "will", "will not", "is/are", "is/are not" are used to express requirements, which are informative within the scope of the given specification. These terms are not used to describe a normative _mandatory_, _recommended_ or _optional_ requirement. The following definitions of informative terms are meant to help the reader to better understand the intent of the present document.
-**Must** The term "must" expresses a _natural consequence_ or states an _indisputable statement of fact_.
-**Can** The term "can" expresses a _possibility_ and _capability_ when conforming to the specification.
-**Will** The term "will" expresses an inevitable behavior, which is outside the scope of this specification.
-**Will not** The term "will not" expresses the negative form of "will".
-**Is/are** The term "is" or "are" or any other verb in indicative mode and present tense expresses a _statement of fact_.
-**Is not/are not** The term "is not" or "are not" expresses the negative form of "is" or "are".
-When the present specification shows one of many alternatives to satisfy a specification requirement, the alternative shown is not intended to limit other acceptable implementation options, which also satisfy the specification requirement.
-Requirements in tables are defined as "Mandatory" (M), "Optional" (O), "Excluded" (X), “Not Applicable” (N/A), or "Conditional" (C.n). Conditional statements (C.n) are listed directly below the table in which they appear.
-"Conditional" (C.n). Conditional statements (C.n) are listed directly below the table in which they appear.If conformance to the present specification is claimed, all normative capabilities indicated as mandatory within the scope of the present specification shall be supported in the specified manner. This also applies for all optional and recommended capabilities for which support is indicated. If an optional or recommended capability is implemented, it shall be implemented as specified.
+- Bluetooth SIG.  
+
+In the present document "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "MAY", "NEED NOT" are used to express normative requirements within the scope of the given specification.  
+
+**SHALL** The term "SHALL" defines a _mandatory_ requirement. The course of action expressed in the requirement is to be strictly followed to conform to the specification. Deviations are not permitted.   
+**SHALL NOT** The term "SHALL NOT" expresses the negative form of "SHALL". The course of action expressed in the requirement is _prohibited_. The requirement is to be followed to conform to the specification. Deviations are not permitted.  
+**SHOULD** The term "SHOULD" defines a _recommended_ requirement. While several other possibilities exist, it is strongly recommended to follow the requirement, but not necessarily required. Valid reasons can exist to not follow the requirement, but the full implications are to be understood and carefully weighed before choosing a different course.  
+**SHOULD NOT** The term "SHOULD NOT" expresses the negative form of "SHOULD". While the course of action expressed in the requirement is _deprecated_, it is not forbidden.  
+**MAY** The term "MAY" defines a truly _optional_ requirement. The course of action expressed in the requirement is permissible within the scope of the specification. The implementor freely decides whether to implement an optional requirement. An implementation, which does not include an optional requirement, has to be prepared to interoperate with another implementation, which includes the option. Similarly, an implementation, which includes an optional requirement, has to be prepared to interoperate with another implementation, which does not include the option.  
+**NEED NOT** The term "NEED NOT" expresses the negative form of "MAY".  
+
+In the present document terms like "can", "will", "will not", "is/are", "is/are not" are used to express requirements, which are informative within the scope of the given specification. These terms are not used to describe a normative _mandatory_, _recommended_ or _optional_ requirement. The following definitions of informative terms are meant to help the reader to better understand the intent of the present document. 
+ 
+**Must** The term "must" expresses a _natural consequence_ or states an _indisputable statement of fact_.  
+**Can** The term "can" expresses a _possibility_ and _capability_ when conforming to the specification.  
+**Will** The term "will" expresses an inevitable behavior, which is outside the scope of this specification.  
+**Will not** The term "will not" expresses the negative form of "will".  
+**Is/are** The term "is" or "are" or any other verb in indicative mode and present tense expresses a _statement of fact_.  
+**Is not/are not** The term "is not" or "are not" expresses the negative form of "is" or "are".  
+
+When the present specification shows one of many alternatives to satisfy a specification requirement, the alternative shown is not intended to limit other acceptable implementation options, which also satisfy the specification requirement.  
+
+Requirements in tables are defined as "Mandatory" (M), "Optional" (O), "Excluded" (X), “Not Applicable” (N/A), or "Conditional" (C.n). Conditional statements (C.n) are listed directly below the table in which they appear.  
+
+"Conditional" (C.n). Conditional statements (C.n) are listed directly below the table in which they appear.If conformance to the present specification is claimed, all normative capabilities indicated as mandatory within the scope of the present specification shall be supported in the specified manner. This also applies for all optional and recommended capabilities for which support is indicated. If an optional or recommended capability is implemented, it shall be implemented as specified.  
  
 Where a field in a data structure is described as "Reserved for Future Use", the device creating the structure SHALL either exclude it or set its value to zero, unless otherwise specified. Any device receiving or interpreting the data structure SHALL ignore that field. The receiving device SHALL NOT reject the data structure because of the presence of the field or its value.
+
 ### 3.2 Abbreviations
 In the present document, the following abbreviations apply:
-DNS		Domain Name System
-HTTP		Hypertext Transfer Protocol
-HTTPS	Hypertext Transfer Protocol Secure
-ID		Identifier
-TTL		Time To Live
-URI		Uniform Resource Identifier
-UX		User Experience
-IWPS		Inter World Portaling System 
+
+DNS                Domain Name System  
+HTTP               Hypertext Transfer Protocol  
+HTTPS              Hypertext Transfer Protocol Secure  
+ID		Identifier  
+TTL		Time To Live  
+URI		Uniform Resource Identifier  
+UX		User Experience  
+IWPS		Inter World Portaling System   
+
 ### 3.3 Definitions
 The following definitions are used within the present document.
 | **Term** | **Definition** |
 | --- | --- |
 | Application | A self-contained software application on a Device. |
-| --- | --- |
 | Asset | A digital asset owned by the User, such as an avatar or mount. |
-| --- | --- |
 | Client | A piece of software that resides on a Device that a World uses to display the User and Portal. A Client can be an Application, or it can be software that runs in an Application. |
-| --- | --- |
 | Cloud | Backend infrastructure of a Service. |
-| --- | --- |
 | Deeplink | A mechanism, triggered by a URI, that allows an Application to be automatically launched from another Application: <https://en.wikipedia.org/wiki/Deep_linking> |
-| --- | --- |
 | Destination Client | The Client the User arrives in at the end of a teleportation. |
-| --- | --- |
 | Destination Cloud | Backend infrastructure that interacts with the Destination Client |
-| --- | --- |
 | Destination Service | Combination of Destination Client and Destination Cloud. |
-| --- | --- |
 | Destination URI | URI that the Source Portal will use to connect the User to the Destination Service with an _Activate_ API call |
-| --- | --- |
 | Device | A unique piece of hardware with at least one operating system that runs Applications |
-| --- | --- |
 | Local Teleport | Teleport between Worlds within the same Application |
-| --- | --- |
 | Remote Teleport | Teleport between Worlds on different Devices. |
-| --- | --- |
 | Service | A provider or host of Worlds. |
-| --- | --- |
 | Source Client | The Client the User starts from within a teleportation. |
-| --- | --- |
 | Source Cloud | Backend infrastructure that interacts with the Source Client |
-| --- | --- |
 | Source Service | Combination of Source Client and Source Cloud. |
-| --- | --- |
 | Portal | UX feature on a Source Client that allows a User to Teleport or Warp a User to a Destination Client. |
-| --- | --- |
 | Portal URI | URI that the User uses to create a Portal, optionally including parameters such as the landing location in the Destination World. |
-| --- | --- |
 | Teleport | A User’s move between different Clients. |
-| --- | --- |
 | User | The person who participates in a Service. In some Services the representation of a User in the World is an avatar, which is an Asset for the purposes of this specification. |
-| --- | --- |
 | User Agent | A Client or other Application which acts on behalf of the User. |
-| --- | --- |
 | World | A virtual world (<https://en.wikipedia.org/wiki/Virtual_world>) |
-| --- | --- | 
+
 ### 3.4 Taxonomy
 The following taxonomy is used within the present document.
 | **Taxonomy** | **Definition** |
 | --- | --- |
 | \[square brackets\] | Indicate a placeholder for a specific argument or option. |
-| --- | --- |
 | &lt;angle brackets&gt; | Indicate an optional element. |
-| --- | --- |
 | _name_ | Indicates an element, object or variable name. |
-| --- | --- |
  
 ## 4 Introduction
 ### 4.1 Actors
