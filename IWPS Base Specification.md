@@ -177,7 +177,7 @@ Within the present document, a Client is defined as a piece of software that res
 The software that controls each World can be described as a Service, and each Service has two main components: the Client, which is software that resides on a User’s Device, and the Cloud, which is software that is not on a User’s Device.
 Figure 1 shows the main software actors that interact to teleport a User from one Client to another. During a Teleport, the User starts from the Source Client and arrives in the Destination Client at the end of the Teleport. The UX feature on the Source Client that allows a User to Teleport is defined as the Portal
 _Figure 1: Overview of Actors_
-![Figure1]()
+![Figure1](https://github.com/oma3dao/iwps-specification/blob/main/Figure%201.png)
 The Source Cloud is the backend infrastructure that interacts with the Source Client. Together they provide the Source Service. Similarly, the Destination Cloud is the backend infrastructure that interacts with the Destination Client. Together they provide the Destination Service.
 Direct secure communications between the Source Client and the Destination Client may not be possible. Communication mechanisms are operating system dependent and may not be available. Therefore, the Source Service and Destination Cloud need to negotiate the most secure communication path to use for the teleportation. If the communication path between the Source Client and Destination Client is secure and reliable it will be used for the teleportation. If not, the Source Client may need to communicate with the Destination Client through a Cloud backend, to trigger a Teleport between the two.
 ### 4.2 Assumptions
