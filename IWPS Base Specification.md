@@ -100,21 +100,21 @@ This section contains the established conventions for the use of dedicated terms
 
 In the present document "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "MAY", "NEED NOT" are used to express normative requirements within the scope of the given specification.  
 
-**SHALL** The term "SHALL" defines a _mandatory_ requirement. The course of action expressed in the requirement is to be strictly followed to conform to the specification. Deviations are not permitted.   
-**SHALL NOT** The term "SHALL NOT" expresses the negative form of "SHALL". The course of action expressed in the requirement is _prohibited_. The requirement is to be followed to conform to the specification. Deviations are not permitted.  
-**SHOULD** The term "SHOULD" defines a _recommended_ requirement. While several other possibilities exist, it is strongly recommended to follow the requirement, but not necessarily required. Valid reasons can exist to not follow the requirement, but the full implications are to be understood and carefully weighed before choosing a different course.  
-**SHOULD NOT** The term "SHOULD NOT" expresses the negative form of "SHOULD". While the course of action expressed in the requirement is _deprecated_, it is not forbidden.  
-**MAY** The term "MAY" defines a truly _optional_ requirement. The course of action expressed in the requirement is permissible within the scope of the specification. The implementor freely decides whether to implement an optional requirement. An implementation, which does not include an optional requirement, has to be prepared to interoperate with another implementation, which includes the option. Similarly, an implementation, which includes an optional requirement, has to be prepared to interoperate with another implementation, which does not include the option.  
-**NEED NOT** The term "NEED NOT" expresses the negative form of "MAY".  
+&emsp;&emsp;**SHALL** &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;The term "SHALL" defines a _mandatory_ requirement. The course of action expressed in the requirement is to be strictly followed to conform to the specification. Deviations are not permitted.   
+&emsp;&emsp;**SHALL NOT** &emsp;&emsp;&emsp;&emsp;The term "SHALL NOT" expresses the negative form of "SHALL". The course of action expressed in the requirement is _prohibited_. The requirement is to be followed to conform to the specification. Deviations are not permitted.  
+&emsp;&emsp;**SHOULD** &emsp;&emsp;&emsp;&emsp;&emsp;The term "SHOULD" defines a _recommended_ requirement. While several other possibilities exist, it is strongly recommended to follow the requirement, but not necessarily required. Valid reasons can exist to not follow the requirement, but the full implications are to be understood and carefully weighed before choosing a different course.  
+&emsp;&emsp;**SHOULD NOT** &emsp;&emsp;&emsp;The term "SHOULD NOT" expresses the negative form of "SHOULD". While the course of action expressed in the requirement is _deprecated_, it is not forbidden.  
+&emsp;&emsp;**MAY** &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;The term "MAY" defines a truly _optional_ requirement. The course of action expressed in the requirement is permissible within the scope of the specification. The implementor freely decides whether to implement an optional requirement. An implementation, which does not include an optional requirement, has to be prepared to interoperate with another implementation, which includes the option. Similarly, an implementation, which includes an optional requirement, has to be prepared to interoperate with another implementation, which does not include the option.  
+&emsp;&emsp;**NEED NOT** &emsp;&emsp;&emsp;&emsp;The term "NEED NOT" expresses the negative form of "MAY".  
 
 In the present document terms like "can", "will", "will not", "is/are", "is/are not" are used to express requirements, which are informative within the scope of the given specification. These terms are not used to describe a normative _mandatory_, _recommended_ or _optional_ requirement. The following definitions of informative terms are meant to help the reader to better understand the intent of the present document. 
  
-**Must** The term "must" expresses a _natural consequence_ or states an _indisputable statement of fact_.  
-**Can** The term "can" expresses a _possibility_ and _capability_ when conforming to the specification.  
-**Will** The term "will" expresses an inevitable behavior, which is outside the scope of this specification.  
-**Will not** The term "will not" expresses the negative form of "will".  
-**Is/are** The term "is" or "are" or any other verb in indicative mode and present tense expresses a _statement of fact_.  
-**Is not/are not** The term "is not" or "are not" expresses the negative form of "is" or "are".  
+&emsp;&emsp;**Must** &emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&nbsp;The term "must" expresses a _natural consequence_ or states an _indisputable statement of fact_.  
+&emsp;&emsp;**Can** &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;The term "can" expresses a _possibility_ and _capability_ when conforming to the specification.  
+&emsp;&emsp;**Will** &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;The term "will" expresses an inevitable behavior, which is outside the scope of this specification.  
+&emsp;&emsp;**Will not** &emsp;&emsp;&emsp;&emsp;&ensp;&nbsp;The term "will not" expresses the negative form of "will".  
+&emsp;&emsp;**Is/are** &emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&nbsp;The term "is" or "are" or any other verb in indicative mode and present tense expresses a _statement of fact_.  
+&emsp;&emsp;**Is not/are not** &emsp;&emsp;The term "is not" or "are not" expresses the negative form of "is" or "are".  
 
 When the present specification shows one of many alternatives to satisfy a specification requirement, the alternative shown is not intended to limit other acceptable implementation options, which also satisfy the specification requirement.  
 
@@ -126,15 +126,16 @@ Where a field in a data structure is described as "Reserved for Future Use", the
 
 ### 3.2 Abbreviations
 In the present document, the following abbreviations apply:
-
-DNS                Domain Name System  
-HTTP               Hypertext Transfer Protocol  
-HTTPS              Hypertext Transfer Protocol Secure  
-ID		Identifier  
-TTL		Time To Live  
-URI		Uniform Resource Identifier  
-UX		User Experience  
-IWPS		Inter World Portaling System   
+|   |   |
+| --- | --- |
+|DNS | Domain Name System|  
+|HTTP|Hypertext Transfer Protocol|  
+|HTTPS|Hypertext Transfer Protocol Secure|  
+|ID|Identifier|  
+|TTL|Time To Live|  
+|URI|Uniform Resource Identifier|  
+|UX|User Experience|  
+|IWPS|Inter World Portaling System|   
 
 ### 3.3 Definitions
 The following definitions are used within the present document.
@@ -175,9 +176,11 @@ The following taxonomy is used within the present document.
 ### 4.1 Actors
 Within the present document, a Client is defined as a piece of software that resides on a Device, which is a unique piece of hardware with at least an operating system able to run Applications. A virtual World uses the Client to display the User and a Portal.
 The software that controls each World can be described as a Service, and each Service has two main components: the Client, which is software that resides on a User’s Device, and the Cloud, which is software that is not on a User’s Device.
-Figure 1 shows the main software actors that interact to teleport a User from one Client to another. During a Teleport, the User starts from the Source Client and arrives in the Destination Client at the end of the Teleport. The UX feature on the Source Client that allows a User to Teleport is defined as the Portal
-_Figure 1: Overview of Actors_
-![Figure1](https://github.com/oma3dao/iwps-specification/blob/main/Figure%201.png)
+Figure 1 shows the main software actors that interact to teleport a User from one Client to another. During a Teleport, the User starts from the Source Client and arrives in the Destination Client at the end of the Teleport. The UX feature on the Source Client that allows a User to Teleport is defined as the Portal  
+
+_Figure 1: Overview of Actors_  
+![Figure1](https://github.com/oma3dao/iwps-specification/blob/main/Figure%201.png)  
+
 The Source Cloud is the backend infrastructure that interacts with the Source Client. Together they provide the Source Service. Similarly, the Destination Cloud is the backend infrastructure that interacts with the Destination Client. Together they provide the Destination Service.
 Direct secure communications between the Source Client and the Destination Client may not be possible. Communication mechanisms are operating system dependent and may not be available. Therefore, the Source Service and Destination Cloud need to negotiate the most secure communication path to use for the teleportation. If the communication path between the Source Client and Destination Client is secure and reliable it will be used for the teleportation. If not, the Source Client may need to communicate with the Destination Client through a Cloud backend, to trigger a Teleport between the two.
 ### 4.2 Assumptions
