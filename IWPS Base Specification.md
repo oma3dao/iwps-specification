@@ -222,24 +222,28 @@ IWPS also can integrate several additional frameworks to improve the basic user 
 #### 5.1.1 API Flow Overview 
 During a Teleport, a User moves from the Source Client through a Portal to the Destination Client. A Teleport is executed via two API calls from the Source Service to the Destination Service:
 - Step 1: _Query_ API: The Source Service (Client or Cloud) SHALL use a _Portal URI_ to call the _Query_ API on the Destination Cloud to set up or update a Portal’s parameters (Section 5.3.2) or to get the status of the Destination World. The parameters returned by the _Query_ API include the _Destination URI_, landing _location_ in the Destination World, allowed Assets, etc. The _Query_ API MAY be called multiple times before the _Teleport_ API is called.
-- Step 2: _Teleport_ API: The Source Service SHALL use a _Destination URI_ to call the _Teleport_ API on Destination Service (Client or Cloud) to execute the Teleport. The communication path between the Services is determined by the _Query_ API. The _Teleport_ API launches the Destination Client, moves any included Assets once the User logs into the Destination Service, and confirms completion of the Teleport to the Source Service.
-_Figure 2: IWPS API Flow_
-![Figure 2]()
+- Step 2: _Teleport_ API: The Source Service SHALL use a _Destination URI_ to call the _Teleport_ API on Destination Service (Client or Cloud) to execute the Teleport. The communication path between the Services is determined by the _Query_ API. The _Teleport_ API launches the Destination Client, moves any included Assets once the User logs into the Destination Service, and confirms completion of the Teleport to the Source Service.  
+_Figure 2: IWPS API Flow_  
+![Figure 2](https://github.com/oma3dao/iwps-specification/blob/main/Figure%202.png)  
  
 #### 5.1.2 Teleport API Communication Options
 Whereas the communication path for a _Query_ API always terminates at the Destination Cloud, the communication path between Source and Destination for a _Teleport_ API call could use one of the below defined mechanisms:
-- **Device Communication**: The Source Client sends the _Teleport_ API call directly to the Destination Client via a communication path on the same Device. The Destination Client returns a response back to the Source Client using the same communication path. This path must have the correct characteristics (see below) in order for it to be used.
-_Figure 3: Device Communications_
-![Figure 3]()
-- **Cloud Communication**: This communication path is required when the Source and Destination Clients are on different devices but it can also be used if Clients are on the same Device. The Source Service (Client or Cloud) sends the _Teleport_ API Call to the Destination Cloud. The Destination Cloud launches Destination Client and returns a response back to the Source Service. Details of how the Destination Cloud launches the Destination Client are implementation-dependent and outside the scope of the present specification. However, some examples are given in Section 6.1.
-_Figure 4: Cloud Communications_
-![Figure 4]()
-- **Hybrid Communication**: Hybrid Communications is used when the Device Communication path has a limitation that does not allow all the _Teleport_ API parameters and response values to be communicated in a reliable manner, but the Destination Cloud still prefers to use the Device’s OS communications to launch the Destination Client. In this case, before calling the _Teleport_ API the Source Service leverages the _Query_ API call to pre-negotiate the Teleport parameters that cannot be exchanged reliably using Device Communications. Once the _Query_ API is complete the Source Client sends the _Teleport_ API call directly to the Destination Client via device communications.
-_Figure 5: Hybrid Communications_
-![Figure 5]()
-- **User Agent Communication**: The Source Service sends _Query_ and _Teleport_ API calls to a User Agent. The API call parameters additionally include the final URI of the Destination Service. The User Agent then sends the API call to the URI of the Destination Service. The Destination Service returns a response back to the User Agent. The User Agent returns a response back to the Source Service. See Section 6.4 for details.
-_Figure 6: User Agent Communications_
-![Figure 6]()
+- **Device Communication**: The Source Client sends the _Teleport_ API call directly to the Destination Client via a communication path on the same Device. The Destination Client returns a response back to the Source Client using the same communication path. This path must have the correct characteristics (see below) in order for it to be used.  
+_Figure 3: Device Communications_  
+![Figure 3](https://github.com/oma3dao/iwps-specification/blob/main/Figure%203.png)  
+
+- **Cloud Communication**: This communication path is required when the Source and Destination Clients are on different devices but it can also be used if Clients are on the same Device. The Source Service (Client or Cloud) sends the _Teleport_ API Call to the Destination Cloud. The Destination Cloud launches Destination Client and returns a response back to the Source Service. Details of how the Destination Cloud launches the Destination Client are implementation-dependent and outside the scope of the present specification. However, some examples are given in Section 6.1.  
+_Figure 4: Cloud Communications_  
+![Figure 4](https://github.com/oma3dao/iwps-specification/blob/main/Figure%204.png)  
+
+- **Hybrid Communication**: Hybrid Communications is used when the Device Communication path has a limitation that does not allow all the _Teleport_ API parameters and response values to be communicated in a reliable manner, but the Destination Cloud still prefers to use the Device’s OS communications to launch the Destination Client. In this case, before calling the _Teleport_ API the Source Service leverages the _Query_ API call to pre-negotiate the Teleport parameters that cannot be exchanged reliably using Device Communications. Once the _Query_ API is complete the Source Client sends the _Teleport_ API call directly to the Destination Client via device communications.  
+_Figure 5: Hybrid Communications_  
+![Figure 5](https://github.com/oma3dao/iwps-specification/blob/main/Figure%205.png)  
+
+- **User Agent Communication**: The Source Service sends _Query_ and _Teleport_ API calls to a User Agent. The API call parameters additionally include the final URI of the Destination Service. The User Agent then sends the API call to the URI of the Destination Service. The Destination Service returns a response back to the User Agent. The User Agent returns a response back to the Source Service. See Section 6.4 for details.  
+_Figure 6: User Agent Communications_  
+![Figure 6](https://github.com/oma3dao/iwps-specification/blob/main/Figure%206.png)  
+
 The Destination Service determines the communication path based on parameters sent by the Source Service in a _Query_ API call. The factors in the decision include:
 1. Which path is the most efficient?
 2. Which path is trustworthy (e.g.- secure and reliable)?
@@ -247,26 +251,28 @@ The Destination Service determines the communication path based on parameters se
 ### 5.2 Uniform Resource Identifiers
 An IWPS Uniform Resource Identifier (URI) is defined as a URI, which is used in the context of IWPS.
 #### 5.2.1 URI Formats
-Any IWPS URI SHALL conform to RFC 3986 \[2\].
-Note: The W3C standard for URI \[4\], refers to RFC 3986 as well.
-Any IWPS URI SHALL be formatted according to the following as given below:
-\[protocol\]://\[destination\]
-The \[destination\] SHALL be of the form:
-\[domain\]/\[location\]?&lt;parameters&gt;
-Where \[domain\] is an internet domain, or an IPv4 or IPv6 address, \[location\] is a spatial position in the target world, and &lt;parameters&gt; are user, state or time-specific properties.
-The \[protocol\] SHALL be of one of the below options:
-http 	HTTP protocol \[4\]
-https 	Use of the HTTP protocol \[4\] over TLS \[3\] .
-ws 	TBD
+Any IWPS URI SHALL conform to RFC 3986 \[2\].  
+&emsp;&emsp;Note: The W3C standard for URI \[4\], refers to RFC 3986 as well.  
+Any IWPS URI SHALL be formatted according to the following as given below:  
+&emsp;&emsp;\[protocol\]://\[destination\]  
+The \[destination\] SHALL be of the form:  
+&emsp;&emsp;\[domain\]/\[location\]?&lt;parameters&gt;  
+
+Where \[domain\] is an internet domain, or an IPv4 or IPv6 address, \[location\] is a spatial position in the target world, and &lt;parameters&gt; are user, state or time-specific properties.  
+The \[protocol\] SHALL be of one of the below options:  
+|http | HTTP protocol \[4\] |
+| :--- | :--- |
+| https | Use of the HTTP protocol \[4\] over TLS \[3\] . |  
+| ws | TBD |  
 #### 5.2.2 Portal URI
-The _Portal URI_ is the marketing IWPS link for a World.
+The _Portal URI_ is the marketing IWPS link for a World.  
 The _Portal URI_ SHALL be used to call the _Query_ API, defined in Section 5.3.2. A _Portal URI_ MAY come from many sources, including but not limited to:
 - Directly from the World developer, through a website or a direct message from a representative of the World.
 - From a referral, such as a friend sending the User a link to join the World.
 - From an advertisement such as a QR code on a billboard or a TV commercial.
 #### 5.2.3 Destination URI
-The _Destination URI_ SHALL be used to call the _Teleport_ API, defined in Section 5.3.3. It is returned as a response to a _Query_ API call. It can also be updated with repeated _Query_ API calls.
-The _Destination URI_ can come in many forms. It can be the address of a simple GraphQL call to a cloud endpoint, or it can be a deep link for a specific operating system using the operating system’s inter-application or inter-process communication service.
+The _Destination URI_ SHALL be used to call the _Teleport_ API, defined in Section 5.3.3. It is returned as a response to a _Query_ API call. It can also be updated with repeated _Query_ API calls.  
+The _Destination URI_ can come in many forms. It can be the address of a simple GraphQL call to a cloud endpoint, or it can be a deep link for a specific operating system using the operating system’s inter-application or inter-process communication service.  
 If the User desires to utilize a User Agent as an intermediary between the Source and Destination, the _Destination URI_ needs to be generated by the User Agent. The is done using these steps:
 1. Submit a _Portal URI_ to the User Agent and receive an updated _Portal URI_.
 2. Use the updated _Portal URI_ in a _Query_ API call.
@@ -274,79 +280,58 @@ If the User desires to utilize a User Agent as an intermediary between the Sourc
 ### 5.3 Application Programming Interfaces
 An IWPS Application Programming Interface (API) is defined as an API which is used in the context of IWPS.
 #### 5.3.1 API Formats
-The content of all IWPS API calls SHALL be sent to the respective URI as a string. All API calls SHALL be formatted according to the _GraphQL_ format, as defined in \[1\]. An API call can have properties, parameters or functions. Either of them can be mandatory or optional.
-Therefore, the receiving URI endpoint SHALL be capable of accepting a string.
-Note: The maximum acceptable length of a string is not defined
-The response to IWPS API call SHALL be provided in JSON format and SHALL contain the supported requested properties from IWPS API call.
+The content of all IWPS API calls SHALL be sent to the respective URI as a string. All API calls SHALL be formatted according to the _GraphQL_ format, as defined in \[1\]. An API call can have properties, parameters or functions. Either of them can be mandatory or optional.  
+Therefore, the receiving URI endpoint SHALL be capable of accepting a string.  
+&emsp;Note: &emsp;&emsp;The maximum acceptable length of a string is not defined  
+The response to IWPS API call SHALL be provided in JSON format and SHALL contain the supported requested properties from IWPS API call.  
 The _GraphQL_ server behind the receiving URI NEED NOT support all queried fields. In case such a field is not supported, the field SHALL NOT be returned in the response.
 #### 5.3.2 Query API
-The _Query_ API call determines the Teleport parameters before the _Teleport_ API is called. If the _Query_ API call is made before a _Teleport_ API call with a _teleport-id_ parameter, the Destination Cloud MAY return _true_ for _approval_ and a positive _expiration_ value to give a pre-approval to the _teleport-id_ as long as the _Teleport_ API is called within _expiration_ milliseconds of calling the _Query_ API.
-The _Query_ API can also be called without a _teleport-id_ to pre-negotiate certain parameters of a Portal. For example, when a Portal is created the Source Service MAY call the _Query_ API using the _Portal URI_ to pre-negotiate aspects of the teleportation for a particular combination of Source Client, Destination Client, and Device, such as URIs, Asset transfers and user agreements. This allows Users to know what can be expected from a Teleport before initiating the teleportation. In this case the information passed back from the _Query_ API call can be cached by the Source Client. The _Query_ API call can be initiated by a User, or the World itself upon installation of the Source Client on the Device.
+The _Query_ API call determines the Teleport parameters before the _Teleport_ API is called. If the _Query_ API call is made before a _Teleport_ API call with a _teleport-id_ parameter, the Destination Cloud MAY return _true_ for _approval_ and a positive _expiration_ value to give a pre-approval to the _teleport-id_ as long as the _Teleport_ API is called within _expiration_ milliseconds of calling the _Query_ API.  
+The _Query_ API can also be called without a _teleport-id_ to pre-negotiate certain parameters of a Portal. For example, when a Portal is created the Source Service MAY call the _Query_ API using the _Portal URI_ to pre-negotiate aspects of the teleportation for a particular combination of Source Client, Destination Client, and Device, such as URIs, Asset transfers and user agreements. This allows Users to know what can be expected from a Teleport before initiating the teleportation. In this case the information passed back from the _Query_ API call can be cached by the Source Client. The _Query_ API call can be initiated by a User, or the World itself upon installation of the Source Client on the Device.  
 The _Query_ API has the following capabilities:
 - Negotiate the communication path between Source and Destination.
 - Calculate the _Destination URI._
 - Give the User a _Download URI_ to download the Destination Client to the User’s Device.
 - Pre-negotiate look and feel rules, as well as other teleporting rules between two Worlds (such as coordinates of destination location).
-- Get pre-approval for a pending Teleport.
+- Get pre-approval for a pending Teleport.  
+
 A Source Service and a Destination Cloud SHALL support the _Query_ API.
 The parameters of the _Query_ API call are defined in Table 1:
 _Table 1: Parameters for Query API Call_
 | **Parameter** | **Type** | **Description** | **Status** |
 | --- | --- | --- | --- |
 | location | Text | Coordinates in a form determined by the Destination World | M   |
-| --- | --- | --- | --- |
 | source-characteristics | Object | Reserved for Future Use | M   |
-| --- | --- | --- | --- |
 | uri-portal | Text | Portal URI of Destination Cloud | O   |
-| --- | --- | --- | --- |
 | source-isa | Enum | enum- \[x86, arm\] | A.1 |
-| --- | --- | --- | --- |
 | source-bits | Enum | enum- \[32, 64\] | A.1 |
-| --- | --- | --- | --- |
 | source-os | Enum | enum- \[windows, macos, android, ios, ps, xbox, switch, etc.\] | A.1 |
-| --- | --- | --- | --- |
 | source-os-version | Float | Operating System version | A.1 |
-| --- | --- | --- | --- |
 | source-client-type | Enum | enum- \[browser, application\] | A.1 |
-| --- | --- | --- | --- |
 | teleport-id | Integer | 128-bit integer randomly generated by the Source Client when Teleportation is initiated | A.2 |
-| --- | --- | --- | --- |
 | user-id | Text | ID of the User in the Originating Service | A.2 |
-| --- | --- | --- | --- |
 | teleport-pin | Integer | A 2-digit decimal number randomly generated by the Source Client when Teleportation is initiated | A.2 |
-| --- | --- | --- | --- |
 | uri-source-ack | Text | URI (called by Destination Service if teleport is successful) | A.2 |
-| --- | --- | --- | --- |
 | uri-source-nack | Text | URI (called by Destination Service if teleport is unsuccessful) | A.2 |
-| --- | --- | --- | --- |
 | assets | Object | Reserved for Future Use | A.2 |
-| --- | --- | --- | --- |
-| error | Text | 	| O   |
-| --- | --- | --- | --- |
-A.1: These parameters SHALL be passed as a bundle.
-A.2: These parameters SHALL be passed as a bundle.
-The returned fields with the _Query_ API Response are defined in Table 2:
+| error | Text | 	| O   |  
+
+A.1: These parameters SHALL be passed as a bundle.  
+A.2: These parameters SHALL be passed as a bundle.  
+The returned fields with the _Query_ API Response are defined in Table 2:  
+
 _Table 2: Parameters for Query API Response_
 | **Field** | **Type** | **Description** | **Status** |
 | --- | --- | --- | --- |
 | approval | Boolean | 	| M   |
-| --- | --- | --- | --- |
 | location | Text | Approved landing location in the Destination. | M   |
-| --- | --- | --- | --- |
 | uri-destination | URI | _Destination URI_ | M   |
-| --- | --- | --- | --- |
 | uri-download | URI | _Download URI_ | A.1 |
-| --- | --- | --- | --- |
 | portal-limitations | Object | Reserved for Future Use. | O   |
-| --- | --- | --- | --- |
 | uri-portal | URI | Updated _Portal URI_ | O   |
-| --- | --- | --- | --- |
 | expiration | Integer | How many seconds the Portal is active for. | A.2 |
-| --- | --- | --- | --- |
 | approved-assets | Object | Reserved for Future Use. | A.2 |
-| --- | --- | --- | --- |
-| status | Object | Reserved for Future Use. | A.2 |
-| --- | --- | --- | --- |
+| status | Object | Reserved for Future Use. | A.2 |  
  
 Use of the _Query_ API during Portal creation without _teleport-id_ is as follows:
 1. The Source Service (Client, Cloud, or both) generates the A.1 _Query_ parameters (see Table 1) and calls the _Query_ API on the _Portal URI_.
@@ -358,17 +343,20 @@ Use of the _Query_ API during Portal creation without _teleport-id_ is as follow
 7. If the Destination Cloud returns a different _location_ value from what the Source Client requested in the _Query_ call, the Source Client SHOULD give the User the option to not create the Portal.
 8. If a _Download URI is_ returned in _uri-download_, the Source Client MAY give the User the option to download the Destination Client.
 9. The Source Client MAY cache _location_, _uri-destination_, _portal-limitations_, and _uri-launch_ with the Portal for future use.
-10. If the User calls uri-download the Query API SHOULD be called after the download to update the _Destination URI_ and _Launch URI_.
+10. If the User calls uri-download the Query API SHOULD be called after the download to update the _Destination URI_ and _Launch URI_.  
+
 Use of the _Query_ API with _teleport-id_ as a status check right before calling the _Teleport_ API:
 1. The Source Service (Client, Cloud, or both) generates the mandatory and A.2 _Query_ parameters (see Table 1) and calls the _Query_ API on the _Portal URI_.
 2. When the Destination Cloud receives a _Query_ API with A.2 parameters it uses the _teleport-id, user-id, source-characteristics,_ and _assets_ parameters to determine if the Teleport is allowed.
 3. If the Teleport is not allowed (e.g.- the User is blocked), then the Destination Cloud SHALL return _false_ for the _approval_ return value and an optional explanation in the _error_ return value. The remaining steps SHALL be skipped.
 4. The Destination Cloud SHALL construct the _approved-assets_ parameter from the _source-characteristics_ and _assets_ parameters and store them, along with other A.2 parameters, with _teleport-id_.
 5. The Destination Cloud SHALL return the required parameters to the Source Service.
-6. The Source Client calls the _Teleport URI_ with _teleport-id_ to initiate the Teleport.
-A _Portal URI_ SHALL point to a Destination Cloud server or a User Agent that will relay parameters to the Destination Cloud.
-A Source Service and a Destination Cloud SHALL support the _Query_ API. 
+6. The Source Client calls the _Teleport URI_ with _teleport-id_ to initiate the Teleport.  
+
+A _Portal URI_ SHALL point to a Destination Cloud server or a User Agent that will relay parameters to the Destination Cloud.  
+A Source Service and a Destination Cloud SHALL support the _Query_ API.  
 Example _Query_ API Calls and Responses are provided in Section 6.2.1.
+
 #### 5.3.3 Teleport API
 The _Teleport_ API call executes the Teleport. The call exchanges information between the Source Service and Destination Service, ultimately logging in the User to the Destination Client and closing the Source Client.
 The _Destination URI_, obtained from the _Query_ API, defines the endpoint the Source Service SHALL call to initiate the Teleport. Depending on the format of the _Destination URI_ the call may originate from the Source Client or the Source Cloud.
