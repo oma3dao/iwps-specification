@@ -494,7 +494,8 @@ TBD.
 ## 6 Examples (Informative)
 ### 6.1 Example Hybrid Communication Scenarios
 Hybrid Communications as described in Section 5.1.2 deserves more explanation given the myriad of possibilities based on the capabilities of communication between apps on the same device. Here we illustrate two examples of Hybrid Communications when calling the _Teleport_ API. The first has the Source Client leveraging the Source Cloud for communications with the Destination Cloud (ALT 1), and the second has the Source Client calling the Destination Cloud directly, bypassing the Source Cloud (ALT 2).  
-_Figure 7: Hybrid Communications Alternatives_
+
+_Figure 7: Hybrid Communications Alternatives_  
 _![Figure 7](https://github.com/oma3dao/iwps-specification/blob/main/Figure%207.png)_  
 
 The message sequence diagram for Hybrid Communication (ALT 1) is shown in Figure 6.  
@@ -522,7 +523,8 @@ The following software actors are considered:
 - Source Client: stand-alone application on Android
 - Destination Client: stand-alone application on Android
 - Source Cloud: public cloud server with standard web stack
-- Destination Cloud: public cloud server with standard web stack
+- Destination Cloud: public cloud server with standard web stack  
+
 Teleport Flow (see Section 5.3 for a more detailed description):
 1. User enters the _Portal URI_ into a Portal on the Source Client.
 2. Source Client generates _teleport-pin_ to show User.
@@ -537,6 +539,7 @@ Teleport Flow (see Section 5.3 for a more detailed description):
 11. Destination Cloud sends _uri-source-ack_ to Source Cloud.
 12. Source Cloud relays the successful teleportation to Source Client.
 13. Source Client logs out User and closes.  
+
 _Figure 10: Detailed messaging for Clients on the same Device_
 ![Figure 10](https://github.com/oma3dao/iwps-specification/blob/main/Figure%2010.png)  
 
@@ -545,11 +548,13 @@ This example reflects the following parameters:
 - Source Service: Traditional
 - Destination Service: Traditional
 - Client Communication: None
+
 The following software actors are considered:
 - Source Client: stand-alone application on Android
 - Destination Client: stand-alone application on iOS
 - Source Cloud: public cloud server with standard web stack
-- Destination Cloud: public cloud server with standard web stack
+- Destination Cloud: public cloud server with standard web stack  
+
 Teleportation Flow (see Section 5.1.2 for a more detailed description):
 1. User enters the _Portal URI_ into a Portal on the Source Client.
 2. Source Client generates _teleport-pin_ to show User.
@@ -563,20 +568,25 @@ Teleportation Flow (see Section 5.1.2 for a more detailed description):
 10. Destination Cloud sends _uri-source-ack_ to Source Cloud.
 11. Source Cloud relays the successful teleportation to Source Client.
 12. Source Client logs out User and closes.
-The message sequence chart in Figure 10 shows the flow when the Destination Cloud launches the Destination Client directly.
+
+The message sequence chart in Figure 10 shows the flow when the Destination Cloud launches the Destination Client directly.  
+
 _Figure 11: Detailed messaging with Client in different Devices_
 ![Figure 11](https://github.com/oma3dao/iwps-specification/blob/main/Figure%2011.png)
+
 #### 6.2.3 Traditional Source, Blockchain Destination, Same Device
 This example reflects the following parameters:
 - Source Service: Traditional
 - Destination Service: Blockchain
 - Client Communication: Direct
+
 The following software actors are considered:
  
 - Source Client: browser-based application on PC
 - Destination Client: browser-based application on PC
 - Source Cloud: public cloud server with standard web stack
-- Destination Cloud: smart contracts running on an IWPS-compatible blockchain
+- Destination Cloud: smart contracts running on an IWPS-compatible blockchain  
+
 Teleportation Flow:
 1. User enters the _Portal URI_ into a Portal on the Source Client.
 2. Source Client generates _teleport-pin_ to show User.
@@ -588,18 +598,22 @@ Teleportation Flow:
 8. Destination Client sends _teleport-id_ to Destination Cloud smart contract to get the remaining teleportation parameters.
 9. After confirming _teleport-pin_, User logs in to the Destination Client.
 10. Destination Client sends _uri-source-ack_ to Source Cloud, bypassing Destination Cloud. Note- Destination Client will need to authenticate itself with Source Cloud. If it can’t, then Destination Cloud will need to send _uri-source-ack_.
-11. Source Cloud logs User out of the Source Client.
+11. Source Cloud logs User out of the Source Client.  
+
 Figure 10 still applies to this scenario.
+
 #### 6.2.4 Blockchain Source, Hybrid Destination, Same Device
 This example reflects the following parameters:
 - Source Service: Blockchain
 - Destination Service: Hybrid
 - Client Communication: None
+
 The following software actors are considered:
 - Source Client: stand-alone application on PC
 - Destination Client: browser-based application on PC
 - Source Cloud: smart contract running on Ethereum
 - Destination Cloud: public cloud server with standard web stack and a smart contract running on Ethereum
+
 Teleportation Flow:
 1. User enters the _Portal URI_ into a Portal on the Source Client.
 2. Source Client generates _teleport-pin_ to show User.
@@ -613,8 +627,10 @@ Teleportation Flow:
 10. Destination Client sends _uri-source-ack_ to Source Cloud smart contract.
 11. Source Client polls Source Cloud smart contract to get Teleport confirmation.
 12. Source Client logs out User and closes.
+
 _Figure 12: Detailed messaging with Client in different Devices_
 ![Figure 12](https://github.com/oma3dao/iwps-specification/blob/main/Figure%2012.png)
+
 ### 6.3 Example IWPS API Calls
 #### 6.3.1 Query API
 TBD.
@@ -624,6 +640,7 @@ TBD.
 TBD.
 ### 6.4 Example User Agent Flows
 The Destination URI can be formatted in such a way that instead of Source Service calling Destination Cloud directly, Source Service can instead call a User Agent that sends the _Teleport Init_ API call to the Destination Cloud. This option allows the User to have more control over their privacy as the User Agent disintermediates the Source Service from the Destination Service and makes tracking more difficult.
+
 #### 6.4.1 User Login
 Here is a possible flow for IWPS using a User Agent.
 1. User leverages User Agent to log into Source Client.
@@ -644,9 +661,12 @@ Here is a possible flow for IWPS using a User Agent.
 16. User leverages User Agent to log into the Destination Client.
 17. Destination Client calls modified _uri-source-ack_ to User Agent.
 18. User Agent retrieves _uri-source-ack_ and calls it on the Source Client.
-19. Source Client logs out User and closes.
+19. Source Client logs out User and closes.  
+
 Since Destination Service does not communicate directly with Source Service it cannot track the User’s movement in the metaverse. The User Agent, which is trusted by the User, can be enabled to automatically log in User to the Destination Service.
+
 _Figure 13: Detailed messaging with a User Agent_
 ![Figure 13](https://github.com/oma3dao/iwps-specification/blob/main/Figure%2013.png)
+
 #### 6.4.2 Asset Transfer
 TBD.
