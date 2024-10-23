@@ -493,16 +493,22 @@ TBD.
 
 ## 6 Examples (Informative)
 ### 6.1 Example Hybrid Communication Scenarios
-Hybrid Communications as described in Section 5.1.2 deserves more explanation given the myriad of possibilities based on the capabilities of communication between apps on the same device. Here we illustrate two examples of Hybrid Communications when calling the _Teleport_ API. The first has the Source Client leveraging the Source Cloud for communications with the Destination Cloud (ALT 1), and the second has the Source Client calling the Destination Cloud directly, bypassing the Source Cloud (ALT 2).
+Hybrid Communications as described in Section 5.1.2 deserves more explanation given the myriad of possibilities based on the capabilities of communication between apps on the same device. Here we illustrate two examples of Hybrid Communications when calling the _Teleport_ API. The first has the Source Client leveraging the Source Cloud for communications with the Destination Cloud (ALT 1), and the second has the Source Client calling the Destination Cloud directly, bypassing the Source Cloud (ALT 2).  
 _Figure 7: Hybrid Communications Alternatives_
-_![Figure 7]()_
-The message sequence diagram for Hybrid Communication (ALT 1) is shown in Figure 6.
+_![Figure 7](https://github.com/oma3dao/iwps-specification/blob/main/Figure%207.png)_  
+
+The message sequence diagram for Hybrid Communication (ALT 1) is shown in Figure 6.  
+
 _Figure 8: Hybrid Communications via Source Cloud (ALT 1)_
-![Figure 8]()
-The message sequence diagram for Hybrid Communication (ALT 2) is shown in Figure 7.
+![Figure 8](https://github.com/oma3dao/iwps-specification/blob/main/Figure%208.png)  
+
+The message sequence diagram for Hybrid Communication (ALT 2) is shown in Figure 7.  
+
 _Figure 9: Hybrid Communications via Destination Cloud (ALT 2)_ 
-_![Figure 9]()_
+_![Figure 9](https://github.com/oma3dao/iwps-specification/blob/main/Figure%209.png)_  
+
 The benefit of leveraging the Source Cloud is to simplify mutual TLS authentication with the Destination Cloud. Without the Source Cloud the Source Client will need to provide its own unique X.509 certificate to the Destination Cloud. However, some blockchain-based Worlds may not have a Source Cloud that can initiate communications with a Destination Cloud. In this case, ALT 2 is used.
+
 ### 6.2 Example Teleport Scenarios
 This section shows the flows for different types of virtual Worlds. The main parameters are:
 - Is the virtual World a “Traditional” World in that the Cloud software stack is completely controlled by the Service, or is the Cloud a “Blockchain” World where the Service only has control over the smart contract?
@@ -530,9 +536,10 @@ Teleport Flow (see Section 5.3 for a more detailed description):
 10. User logs in to the Destination Client, which confirms login to Destination Cloud.
 11. Destination Cloud sends _uri-source-ack_ to Source Cloud.
 12. Source Cloud relays the successful teleportation to Source Client.
-13. Source Client logs out User and closes.
+13. Source Client logs out User and closes.  
 _Figure 10: Detailed messaging for Clients on the same Device_
-![Figure 10]()
+![Figure 10](https://github.com/oma3dao/iwps-specification/blob/main/Figure%2010.png)  
+
 #### 6.2.2 Traditional Source, Traditional Destination, Different Devices
 This example reflects the following parameters:
 - Source Service: Traditional
@@ -558,7 +565,7 @@ Teleportation Flow (see Section 5.1.2 for a more detailed description):
 12. Source Client logs out User and closes.
 The message sequence chart in Figure 10 shows the flow when the Destination Cloud launches the Destination Client directly.
 _Figure 11: Detailed messaging with Client in different Devices_
-![Figure 11]()
+![Figure 11](https://github.com/oma3dao/iwps-specification/blob/main/Figure%2011.png)
 #### 6.2.3 Traditional Source, Blockchain Destination, Same Device
 This example reflects the following parameters:
 - Source Service: Traditional
@@ -607,7 +614,7 @@ Teleportation Flow:
 11. Source Client polls Source Cloud smart contract to get Teleport confirmation.
 12. Source Client logs out User and closes.
 _Figure 12: Detailed messaging with Client in different Devices_
-![Figure 12]()
+![Figure 12](https://github.com/oma3dao/iwps-specification/blob/main/Figure%2012.png)
 ### 6.3 Example IWPS API Calls
 #### 6.3.1 Query API
 TBD.
@@ -640,6 +647,6 @@ Here is a possible flow for IWPS using a User Agent.
 19. Source Client logs out User and closes.
 Since Destination Service does not communicate directly with Source Service it cannot track the User’s movement in the metaverse. The User Agent, which is trusted by the User, can be enabled to automatically log in User to the Destination Service.
 _Figure 13: Detailed messaging with a User Agent_
-![Figure 13]()
+![Figure 13](https://github.com/oma3dao/iwps-specification/blob/main/Figure%2013.png)
 #### 6.4.2 Asset Transfer
 TBD.
