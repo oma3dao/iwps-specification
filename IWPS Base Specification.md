@@ -16,63 +16,63 @@ Key capabilities of IWPS include:
 
 ## Content
 
-Executive Summary.........................................................................2  
-Contents..............................................................................................3  
-1 Introduction....................................................................................5  
-1.1 Background.................................................................................5  
-1.2 General Considerations.................................................................5  
-1.3 Scope................................................................................5  
-2 References.............................................................................6  
-2.1 Normative References.................................................................6  
-2.2 Informative References...............................................................6  
-3 Definitions and Abbreviations..........................................................7  
-3.1 Modal Verbs Terminology..............................................................7  
-3.2 Abbreviations........................................................................9  
-3.3 Definitions..........................................................................9  
-3.4 Taxonomy............................................................................10  
-4 Introduction..........................................................................11  
-4.1 Actors..............................................................................11  
-4.2 Assumptions.........................................................................12  
-4.2.1 Communication Assumptions.........................................................12  
-4.2.2 Client Implementation Assumptions.................................................12  
-4.2.3 Cloud Implementation Assumptions..................................................12  
-4.2 API Overview........................................................................13  
-4.3 Extension Frameworks................................................................13  
-5 Specification (Normative).............................................................14  
-5.1 Mode of Operation...................................................................14  
-5.1.1 API Flow Overview.................................................................14  
-5.1.2 Teleport API Communication Options................................................15  
-5.2 Uniform Resource Identifiers........................................................19  
-5.2.1 URI Formats.......................................................................19  
-5.2.2 Portal URI........................................................................20  
-5.2.3 Destination URI...................................................................20  
-5.3 Application Programming Interfaces..................................................21  
-5.3.1 API Formats.......................................................................21  
-5.3.2 Query API.........................................................................21  
-5.3.3 Teleport API......................................................................25  
-5.4 IWPS Authentication.................................................................27  
-5.4.1 Overview..........................................................................27  
-5.4.2 Internet Security.................................................................28  
-5.4.3 OMA3 Security.....................................................................28  
-5.4.4 Blockchain Node Security..........................................................28  
-5.5 Identity Framework..................................................................29  
-5.6 Asset Transfer Framework............................................................29  
-5.7 Look and Feel Framework.............................................................30  
-5.8 Payments Framework..................................................................30  
-6 Examples (Informative)................................................................31  
-6.1 Example Hybrid Communication Scenarios..............................................31  
-6.2 Example Teleport Scenarios..........................................................32  
-6.2.1 Traditional Source, Traditional Destination, Same Device..........................32  
-6.2.2 Traditional Source, Traditional Destination, Different Devices....................34  
-6.2.3 Traditional Source, Blockchain Destination, Same Device...........................35  
-6.2.4 Blockchain Source, Hybrid Destination, Same Device................................36  
-6.3 Example IWPS API Calls..............................................................38  
-6.3.1 Query API.........................................................................38  
-6.3.2 Teleport API- Cloud Communications................................................38  
-6.3.3 Teleport API- Direct Communications...............................................38  
-6.4 Example User Agent Flows............................................................38  
-6.4.1 User Login........................................................................38  
-6.4.2 Asset Transfer....................................................................40  
+[Executive Summary](#executive-summary)  
+[Contents](#content)  
+1 Introduction  
+1.1 Background  
+1.2 General Considerations  
+1.3 Scope  
+2 References  
+2.1 Normative References  
+2.2 Informative References  
+3 Definitions and Abbreviations  
+3.1 Modal Verbs Terminology  
+3.2 Abbreviations  
+3.3 Definitions  
+3.4 Taxonomy  
+4 Introduction  
+4.1 Actors  
+4.2 Assumptions  
+4.2.1 Communication Assumptions  
+4.2.2 Client Implementation Assumptions  
+4.2.3 Cloud Implementation Assumptions  
+4.2 API Overview  
+4.3 Extension Frameworks  
+5 Specification (Normative)  
+5.1 Mode of Operation4  
+5.1.1 API Flow Overview  
+5.1.2 Teleport API Communication Options  
+5.2 Uniform Resource Identifiers  
+5.2.1 URI Formats  
+5.2.2 Portal URI  
+5.2.3 Destination URI  
+5.3 Application Programming Interfaces  
+5.3.1 API Formats  
+5.3.2 Query API  
+5.3.3 Teleport API  
+5.4 IWPS Authentication  
+5.4.1 Overview  
+5.4.2 Internet Security  
+5.4.3 OMA3 Security  
+5.4.4 Blockchain Node Security  
+5.5 Identity Framework  
+5.6 Asset Transfer Framework  
+5.7 Look and Feel Framework  
+5.8 Payments Framework  
+6 Examples (Informative)  
+6.1 Example Hybrid Communication Scenarios  
+6.2 Example Teleport Scenarios  
+6.2.1 Traditional Source, Traditional Destination, Same Device  
+6.2.2 Traditional Source, Traditional Destination, Different Devices  
+6.2.3 Traditional Source, Blockchain Destination, Same Device  
+6.2.4 Blockchain Source, Hybrid Destination, Same Device  
+6.3 Example IWPS API Calls  
+6.3.1 Query API  
+6.3.2 Teleport API- Cloud Communications  
+6.3.3 Teleport API- Direct Communications  
+6.4 Example User Agent Flows  
+6.4.1 User Login  
+6.4.2 Asset Transfer  
 
 ## 1 Introduction
 
