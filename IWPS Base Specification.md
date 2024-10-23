@@ -665,7 +665,7 @@ Here is a possible flow for IWPS using a User Agent.
 
 Since Destination Service does not communicate directly with Source Service it cannot track the User’s movement in the metaverse. The User Agent, which is trusted by the User, can be enabled to automatically log in User to the Destination Service.
 
-_Figure 13: Detailed messaging with a User Agent_
+_Figure 13: Detailed messaging with a User Agent_  
 ![Figure 13](https://github.com/oma3dao/iwps-specification/blob/main/Figure%2013.png)
 
 #### 6.4.2 Asset Transfer
