@@ -20,59 +20,59 @@ Key capabilities of IWPS include:
 [Contents](#content)  
 [1 Introduction](#1-introduction)  
 [1.1 Background](#11-background)  
-1.2 General Considerations  
-1.3 Scope  
-2 References  
-2.1 Normative References  
-2.2 Informative References  
-3 Definitions and Abbreviations  
-3.1 Modal Verbs Terminology  
-3.2 Abbreviations  
-3.3 Definitions  
-3.4 Taxonomy  
-4 Introduction  
-4.1 Actors  
-4.2 Assumptions  
-4.2.1 Communication Assumptions  
-4.2.2 Client Implementation Assumptions  
-4.2.3 Cloud Implementation Assumptions  
-4.2 API Overview  
-4.3 Extension Frameworks  
-5 Specification (Normative)  
-5.1 Mode of Operation4  
-5.1.1 API Flow Overview  
-5.1.2 Teleport API Communication Options  
-5.2 Uniform Resource Identifiers  
-5.2.1 URI Formats  
-5.2.2 Portal URI  
-5.2.3 Destination URI  
-5.3 Application Programming Interfaces  
-5.3.1 API Formats  
-5.3.2 Query API  
-5.3.3 Teleport API  
-5.4 IWPS Authentication  
-5.4.1 Overview  
-5.4.2 Internet Security  
-5.4.3 OMA3 Security  
-5.4.4 Blockchain Node Security  
-5.5 Identity Framework  
-5.6 Asset Transfer Framework  
-5.7 Look and Feel Framework  
-5.8 Payments Framework  
-6 Examples (Informative)  
-6.1 Example Hybrid Communication Scenarios  
-6.2 Example Teleport Scenarios  
-6.2.1 Traditional Source, Traditional Destination, Same Device  
-6.2.2 Traditional Source, Traditional Destination, Different Devices  
-6.2.3 Traditional Source, Blockchain Destination, Same Device  
-6.2.4 Blockchain Source, Hybrid Destination, Same Device  
-6.3 Example IWPS API Calls  
-6.3.1 Query API  
-6.3.2 Teleport API- Cloud Communications  
-6.3.3 Teleport API- Direct Communications  
-6.4 Example User Agent Flows  
-6.4.1 User Login  
-6.4.2 Asset Transfer  
+[1.2 General Considerations](#12-general-considerations)  
+[1.3 Scope](#13-scope)  
+[2 References](#2-references)  
+[2.1 Normative References](#21-normative-references)  
+[2.2 Informative References](#22-informative-references)  
+[3 Definitions and Abbreviations](#3-definitions-and-abbreviations)  
+[3.1 Modal Verbs Terminology](#31-modal-verbs-terminology)  
+[3.2 Abbreviations](#32-abbreviations)  
+[3.3 Definitions](#33-definitions)  
+[3.4 Taxonomy](#34-taxonomy)  
+[4 Introduction](#4-introduction)  
+[4.1 Actors](#41-actors)  
+[4.2 Assumptions](#42-assumptions)  
+[4.2.1 Communication Assumptions](#421-communication-assumptions)  
+[4.2.2 Client Implementation Assumptions](#422-client-implementation-assumptions)  
+[4.2.3 Cloud Implementation Assumptions](#423-cloud-implementation-assumptions)  
+[4.2 API Overview](#42-api-overview)  
+[4.3 Extension Frameworks](#43-extension-frameworks)  
+[5 Specification (Normative)](#5-specification-normative)  
+[5.1 Mode of Operation](#51-mode-of-operation)  
+[5.1.1 API Flow Overview](#511-api-flow-overview)  
+[5.1.2 Teleport API Communication Options](#512-teleport-api-communication-options)  
+[5.2 Uniform Resource Identifiers](#52-uniform-resource-identifiers)  
+[5.2.1 URI Formats](#521-uri-formats)  
+[5.2.2 Portal URI](#522-portal-uri)  
+[5.2.3 Destination URI](#523-destination-uri)  
+[5.3 Application Programming Interfaces](#53-application-programming-interfaces)  
+[5.3.1 API Formats](#531-api-formats)  
+[5.3.2 Query API](#532-query-api)  
+[5.3.3 Teleport API](#533-teleport-api)  
+[5.4 IWPS Authentication](#54-iwps-authentication)  
+[5.4.1 Overview](#541-overview)  
+[5.4.2 Internet Security](#542-internet-security)  
+[5.4.3 OMA3 Security](#543-oma3-security)  
+[5.4.4 Blockchain Node Security](#544-blockchain-node-security)  
+[5.5 Identity Framework](#55-identity-framework)  
+[5.6 Asset Transfer Framework](#56-asset-transfer-framework)  
+[5.7 Look and Feel Framework](#57-look-and-feel-framework)  
+[5.8 Payments Framework](#58-payments-framework)  
+[6 Examples (Informative)](#6-examples-informative)  
+[6.1 Example Hybrid Communication Scenarios](#61-example-hybrid-communication-scenarios)  
+[6.2 Example Teleport Scenarios](#62-example-teleport-scenarios)  
+[6.2.1 Traditional Source, Traditional Destination, Same Device](#621-traditional-source-traditional-destination-same-device)  
+[6.2.2 Traditional Source, Traditional Destination, Different Devices](#622-traditional-source-traditional-destination-different-devices)  
+[6.2.3 Traditional Source, Blockchain Destination, Same Device](#623-traditional-source-blockchain-destination-same-device)  
+[6.2.4 Blockchain Source, Hybrid Destination, Same Device](#624-blockchain-source-hybrid-destination-same-device)  
+[6.3 Example IWPS API Calls](#63-example-iwps-api-calls)  
+[6.3.1 Query API](#631-query-api)  
+[6.3.2 Teleport API- Cloud Communications](#632-teleport-api--cloud-communications)  
+[6.3.3 Teleport API- Direct Communications](#633-teleport-api--direct-communications)  
+[6.4 Example User Agent Flows](#64-example-user-agent-flows)  
+[6.4.1 User Login](#641-user-login)  
+[6.4.2 Asset Transfer](#642-asset-transfer)  
 
 ## 1 Introduction
 
