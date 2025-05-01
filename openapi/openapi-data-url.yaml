@@ -1,0 +1,57 @@
+openapi: 3.0.3
+info:
+  title: Data URL Metadata API
+  version: 0.1
+  description: >
+    This endpoint retrieves metadata for a versioned Decentralized Identifier (DID), optionally resolving
+    to the best available version if exact match is not found.
+servers:
+  - url: /api/data-url
+
+paths:
+  /:
+    get:
+      summary: Get metadata for a versioned DID
+      parameters:
+        - in: query
+          name: versionedDID
+          schema:
+            type: string
+          required: true
+          description: >
+            A versioned DID string in the format `did:namespace:path/v/version`, e.g., `did:web:example.com/v/1.0`.
+      responses:
+        '200':
+          description: Metadata JSON successfully retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                description: JSON metadata as defined by the IWPS Metadata Schema
+        '400':
+          description: Missing or invalid versionedDID format
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+        '404':
+          description: Metadata not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+        '500':
+          description: Internal server error or invalid metadata
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
