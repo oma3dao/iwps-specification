@@ -77,23 +77,26 @@ Key capabilities of IWPS include:
 ## 1 Introduction
 
 ### 1.1 Background
-For more background on IWPS, the reader is referred to IWPS Position Paper [6]
+For more background on IWPS, the reader is referred to IWPS [Position Paper](https://github.com/oma3dao/portal-position-paper) [6]
 ### 1.2 General Considerations
-This specification meets the requirements as specified in IWPS RFP [7]
+This specification meets the requirements as specified in IWPS [RFP](https://github.com/oma3dao/iwps-rfp) [7]
 ### 1.3 Scope
 This is the base API specification for IWPS and is enough to implement a test network of interconnected worlds.  Future documents will go into more detail on features that augment the base specifications in areas such as security, user agents, identity, asset transfer, and payments.
+
 ## 2 References
 ### 2.1 Normative References
-1. GraphQL, <https://spec.graphql.org/October2021/>
+1. OMA3 Github repository, <https://github.com/oma3dao/iwps-specification>
 2. IETF RFC 3986: "Uniform Resource Identifier (URI): Generic Syntax", January 2005, <https://www.rfc-editor.org/rfc/rfc3986>.
 3. IETF RFC 8446: "The Transport Layer Security (TLS) Protocol Version 1.3", August 2018, <https://www.rfc-editor.org/rfc/rfc8446.txt>
 4. IETF RFC 9110: "HTTP Semantics", June 2022, <https://www.rfc-editor.org/rfc/rfc9110.txt>
+5. IETF RFC 4122: “A Universally Unique IDentifier (UUID) URN Namespace”, July 2005, <https://www.rfc-editor.org/rfc/rfc4122.html>
 ### 2.2 Informative References
-5. W3C "Naming and Addressing: URIs, URLs, ... ", <https://www.w3.org/Addressing>.
-6. OMA3: “Portals Unleashed- Creating a teleportation standard to connect the metaverse”, <https://github.com/oma3dao/portal-position-paper>
-7. OMA3: “Inter World Portaling System (IWPS) Request for Proposals”, <https://github.com/oma3dao/iwps-rfp>
-8. NSA, Eliminating Obsolete Transport Layer Security (TLS) Protocol Configurations, <https://media.defense.gov/2021/Jan/05/2002560140/-1/-> 10 1/0/ELIMINATING_OBSOLETE_TLS_UOO197443-20.PDF
-9. IETF Deprecation of IKEv1 and obsoleted algorithms. 12 <https://datatracker.ietf.org/doc/rfc9395>
+6. W3C "Naming and Addressing: URIs, URLs, ... ", <https://www.w3.org/Addressing>.
+7. OMA3: “Portals Unleashed- Creating a teleportation standard to connect the metaverse”, <https://github.com/oma3dao/portal-position-paper>
+8. OMA3: “Inter World Portaling System (IWPS) Request for Proposals”, <https://github.com/oma3dao/iwps-rfp>
+9. NSA, Eliminating Obsolete Transport Layer Security (TLS) Protocol Configurations, <https://media.defense.gov/2021/Jan/05/2002560140/-1/-> 10 1/0/ELIMINATING_OBSOLETE_TLS_UOO197443-20.PDF
+10. IETF Deprecation of IKEv1 and obsoleted algorithms. 12 <https://datatracker.ietf.org/doc/rfc9395>
+
 ## 3 Definitions and Abbreviations
 ### 3.1 Modal Verbs Terminology
 This section contains the established conventions for the use of dedicated terms, describing normative and informative requirements. These terms have a specific meaning, as defined below. These are based on the definitions in the following organizations:
@@ -179,7 +182,61 @@ The following taxonomy is used within the present document.
 | \[square brackets\] | Indicate a placeholder for a specific argument or option. |
 | &lt;angle brackets&gt; | Indicate an optional element. |
 | _name_ | Indicates an element, object or variable name. |
- 
+
+### 3.5 Naming Conventions
+This specification standardizes naming conventions across all protocol interfaces, including URLs, JSON fields, and request parameters. Consistent naming promotes interoperability, readability, and ease of use across chains and platforms.
+
+#### 3.5.1 Communication Assumptions
+- All JSON keys **must use camelCase**.
+- Keys must be syntactically valid JavaScript identifiers to ensure compatibility with web tooling and smart contract SDKs.
+- Acronyms must follow camelCase formatting rules (e.g., sourceIsa, userId, apiUrl).
+
+**Examples**:  
+json  
+CopyEdit  
+{  
+&emsp;&emsp;"appName": "ExampleApp",  
+&emsp;&emsp;"registryId": "oma3:1:abcd",  
+&emsp;&emsp;"screenShots": ["https://example.com/1.png",  
+&emsp;&emsp;"https://example.com/2.png"],  
+&emsp;&emsp;"sourceIsa": "isa:example:1234"  
+  
+}
+
+#### 3.5.2 POST Request Parameters
+- POST request bodies must be structured as JSON objects using the same camelCase conventions.
+- Query parameters (when applicable) must also use camelCase.
+
+**Examples**:  
+POST /api/registerApp  
+{  
+&emsp;&emsp;"appDid": "did:web:example.com",  
+&emsp;&emsp;"registryId": "oma3:1:abcd",  
+&emsp;&emsp;"marketingUrl": "https://example.com/marketing"  
+}
+
+#### 3.5.3 URL Paths
+- URL paths must use kebab-case (lowercase with hyphens).
+- This ensures consistency, human readability, and compatibility with web conventions and SEO best practices.
+- Avoid camelCase, snake_case, or uppercase letters in URL segments.
+
+**Examples**:  
+bash  
+CopyEdit  
+✅ /apps/my-app/submit  
+❌ /apps/myApp/submit  
+❌ /apps/my_app/submit  
+
+#### 3.5.4 Summary
+
+| **Interface** | **Convention** | **Notes** |
+| --- | --- | --- |
+| JSON | Text | keyscamelCase | Required for all metadata and payloads   |
+| POST params | camelCase | Matches JSON structure |
+| URL paths | kebab-case | Lowercase with hyphens only |
+
+All implementations **must not mix naming conventions** within the same object or endpoint structure. These rules apply universally across protocol metadata, registration records, APIs, and DID-backed resources.
+
 ## 4 Introduction
 ### 4.1 Actors
 Within the present document, a Client is defined as a piece of software that resides on a Device, which is a unique piece of hardware with at least an operating system able to run Applications. A virtual World uses the Client to display the User and a Portal.
@@ -254,9 +311,8 @@ The Destination Service determines the communication path based on parameters se
 1. Which path is the most efficient?
 2. Which path is trustworthy (e.g.- secure and reliable)?
 3. Are the Clients on the same Device?
-### 5.2 Uniform Resource Identifiers
-An IWPS Uniform Resource Identifier (URI) is defined as a URI, which is used in the context of IWPS.
-#### 5.2.1 URI Formats
+### 5.2 Uniform Resource Identifiers and Locators 
+#### 5.2.1 Formats
 Any IWPS URI SHALL conform to RFC 3986 \[2\].  
 &emsp;&emsp;Note: The W3C standard for URI \[4\], refers to RFC 3986 as well.  
 Any IWPS URI SHALL be formatted according to the following as given below:  
@@ -270,6 +326,9 @@ The \[protocol\] SHALL be of one of the below options:
 | :--- | :--- |
 | https | Use of the HTTP protocol \[4\] over TLS \[3\] . |  
 | ws | TBD |  
+
+IWPS Uniform Resource Locators (URLs) SHALL conform to RFC 1738.  All URLs SHALL be called with the POST method for security reasons.
+
 #### 5.2.2 Portal URI
 The _Portal URI_ is the marketing IWPS link for a World.  
 
@@ -280,7 +339,7 @@ The _Portal URI_ SHALL be used to call the _Query_ API, defined in Section 5.3.2
 #### 5.2.3 Destination URI
 The _Destination URI_ SHALL be used to call the _Teleport_ API, defined in Section 5.3.3. It is returned as a response to a _Query_ API call. It can also be updated with repeated _Query_ API calls.  
 
-The _Destination URI_ can come in many forms. It can be the address of a simple GraphQL call to a cloud endpoint, or it can be a deep link for a specific operating system using the operating system’s inter-application or inter-process communication service.  
+The _Destination URI_ can come in many forms. It can be the address of a simple REST call to a cloud endpoint, or it can be a deep link for a specific operating system using the operating system’s inter-application or inter-process communication service.  
 
 If the User desires to utilize a User Agent as an intermediary between the Source and Destination, the _Destination URI_ needs to be generated by the User Agent. The is done using these steps:
 1. Submit a _Portal URI_ to the User Agent and receive an updated _Portal URI_.
@@ -289,17 +348,17 @@ If the User desires to utilize a User Agent as an intermediary between the Sourc
 ### 5.3 Application Programming Interfaces
 An IWPS Application Programming Interface (API) is defined as an API which is used in the context of IWPS.
 #### 5.3.1 API Formats
-The content of all IWPS API calls SHALL be sent to the respective URI as a string. All API calls SHALL be formatted according to the _GraphQL_ format, as defined in \[1\]. An API call can have properties, parameters or functions. Either of them can be mandatory or optional.  
+The content of all IWPS API calls SHALL be sent to the respective URI as a string. Definitions of all API calls can be found in OMA3’s Github repository \[1\]. An API call can have properties, parameters or functions. Either of them can be mandatory or optional.  
 
 Therefore, the receiving URI endpoint SHALL be capable of accepting a string.  
 &emsp;Note: &emsp;&emsp;The maximum acceptable length of a string is not defined  
 
 The response to IWPS API call SHALL be provided in JSON format and SHALL contain the supported requested properties from IWPS API call.  
 
-The _GraphQL_ server behind the receiving URI NEED NOT support all queried fields. In case such a field is not supported, the field SHALL NOT be returned in the response.
+The server behind the receiving URI NEED NOT support all queried fields. In case such a field is not supported, the field SHALL NOT be returned in the response.
 
 #### 5.3.2 Query API
-The _Query_ API call determines the Teleport parameters before the _Teleport_ API is called. If the _Query_ API call is made before a _Teleport_ API call with a _teleport-id_ parameter, the Destination Cloud MAY return _true_ for _approval_ and a positive _expiration_ value to give a pre-approval to the _teleport-id_ as long as the _Teleport_ API is called within _expiration_ milliseconds of calling the _Query_ API.  
+The _Query_ API call determines the Teleport parameters before the _Teleport_ API is called. If the _Query_ API call is made before a _Teleport_ API call with a _teleport-id_ parameter, the Destination Cloud MAY return _true_ for _approval_ and a positive _expiration_ value to give a pre-approval to the _teleport-id_ as long as the _Teleport_ API is called within _expiration_ seconds of calling the _Query_ API.  
 
 The _Query_ API can also be called without a _teleport-id_ to pre-negotiate certain parameters of a Portal. For example, when a Portal is created the Source Service MAY call the _Query_ API using the _Portal URI_ to pre-negotiate aspects of the teleportation for a particular combination of Source Client, Destination Client, and Device, such as URIs, Asset transfers and user agreements. This allows Users to know what can be expected from a Teleport before initiating the teleportation. In this case the information passed back from the _Query_ API call can be cached by the Source Client. The _Query_ API call can be initiated by a User, or the World itself upon installation of the Source Client on the Device.  
 
@@ -317,23 +376,22 @@ The parameters of the _Query_ API call are defined in Table 1:
 _Table 1: Parameters for Query API Call_
 | **Parameter** | **Type** | **Description** | **Status** |
 | --- | --- | --- | --- |
-| location | Text | Coordinates in a form determined by the Destination World | M   |
-| source-characteristics | Object | Reserved for Future Use | M   |
-| uri-portal | Text | Portal URI of Destination Cloud | O   |
-| source-isa | Enum | enum- \[x86, arm\] | A.1 |
-| source-bits | Enum | enum- \[32, 64\] | A.1 |
-| source-os | Enum | enum- \[windows, macos, android, ios, ps, xbox, switch, etc.\] | A.1 |
-| source-os-version | Float | Operating System version | A.1 |
-| source-client-type | Enum | enum- \[browser, application\] | A.1 |
-| teleport-id | Integer | 128-bit integer randomly generated by the Source Client when Teleportation is initiated | A.2 |
-| user-id | Text | ID of the User in the Originating Service | A.2 |
-| teleport-pin | Integer | A 2-digit decimal number randomly generated by the Source Client when Teleportation is initiated | A.2 |
-| uri-source-ack | Text | URI (called by Destination Service if teleport is successful) | A.2 |
-| uri-source-nack | Text | URI (called by Destination Service if teleport is unsuccessful) | A.2 |
+| location | Text | Coordinates in a form determined by the Destination World.If not given, Destination World chooses the location. | O   |
+| sourceCharacteristics | Object | Reserved for Future Use | M   |
+| sourceIsa | Enum | enum- \[x86, arm\] | A.1 |
+| sourceBits | Enum | enum- \[32, 64\] | A.1 |
+| sourceOs | Enum | enum- \[windows, macos, android, ios, ps, xbox, switch, etc.\] | A.1 |
+| sourceOsVersion | Float | Operating System version | A.1 |
+| sourceClientType | Enum | enum- \[browser, application\] | A.1 |
+| teleportId | Integer | UUID v4 randomly generated by the Source Client when Teleportation is initiated | A.2 |
+| userId | Text | ID of the User in the Originating Service | A.2 |
+| teleportPin | Integer | A 2-digit decimal number randomly generated by the Source Client when Teleportation is initiated | A.2 |
+| sourceAckUrl | Text | URI (called by Destination Service if teleport is successful) | A.2 |
+| SourceAckUrl | Text | URI (called by Destination Service if teleport is unsuccessful) | A.2 |
 | assets | Object | Reserved for Future Use | A.2 |
 | error | Text | 	| O   |  
 
-A.1: These parameters SHALL be passed as a bundle.  
+A.1: These parameters SHALL be passed as a bundle. If any of these parameters are unknown they should not be included.  
 A.2: These parameters SHALL be passed as a bundle.  
 
 The returned fields with the _Query_ API Response are defined in Table 2:  
@@ -342,32 +400,33 @@ _Table 2: Parameters for Query API Response_
 | **Field** | **Type** | **Description** | **Status** |
 | --- | --- | --- | --- |
 | approval | Boolean | 	| M   |
-| location | Text | Approved landing location in the Destination. | M   |
-| uri-destination | URI | _Destination URI_ | M   |
-| uri-download | URI | _Download URI_ | A.1 |
-| portal-limitations | Object | Reserved for Future Use. | O   |
-| uri-portal | URI | Updated _Portal URI_ | O   |
-| expiration | Integer | How many seconds the Portal is active for. | A.2 |
-| approved-assets | Object | Reserved for Future Use. | A.2 |
+| location | Text | Approved landing location in the Destination.  If location was passed as a parameter this is required. | O   |
+| destinationUrl | URL | _Destination URI_ | M   |
+| downloadUrl | URL | _Download URI_ | A.1 |
+| portalLimitations | Object | Reserved for Future Use. | O   |
+| portalUrl | URL | Updated _Portal URI_ | O   |
+| expiration | Integer | How many seconds the Portal is active for.  If 0, no expiration. | A.2 |
+| approvedAssets | Object | Reserved for Future Use. | A.2 |
 | status | Object | Reserved for Future Use. | A.2 |  
+| error | Text |   | O |  
  
-Use of the _Query_ API during Portal creation without _teleport-id_ is as follows:
+Use of the _Query_ API during Portal creation without _teleportId_ is as follows:
 1. The Source Service (Client, Cloud, or both) generates the A.1 _Query_ parameters (see Table 1) and calls the _Query_ API on the _Portal URI_.
-2. When the Destination Cloud receives a _Query_ API with mandatory and A.1 parameters it uses the _location_, _source-isa_, _source-bits_, _source-os_, _source-os-version_, _source-client-type_, and _source-characteristics_ parameters to determine if the Teleport is allowed.
+2. When the Destination Cloud receives a _Query_ API with mandatory and A.1 parameters it uses the _location_, _sourceIsa_, _sourceBits_, _sourceOs_, _sourceOsVersion_, _sourceClientType_, and _sourceCharacteristics_ parameters to determine if the Teleport is allowed.
 3. If the Teleport is not allowed (e.g.- there is no way to complete a successful Teleport), then the Destination Cloud SHALL return _false_ for the _approval_ return value and an optional explanation in the _error_ return value. The remaining steps are skipped.
-4. The Destination Cloud uses the _source-characteristics_ parameter to generate the _portal-limitations_ objects.
-5. The Destination Cloud uses the _source-isa_, _source-bits_, _source-os_, _source-os-version_, _source-client-type_ parameters to determine _uri-destination_, _uri-launch_, and _uri-download_.
-6. The Destination Cloud responds to the _Query_ call with _true_ for approval, along with _uri-destination_, _uri-warp_, _uri-download_, _location_, and _portal-limitations_.
+4. The Destination Cloud uses the _source-characteristics_ parameter to generate the _portalLimitations_ objects.
+5. The Destination Cloud uses the _sourceIsa_, _sourceBits_, _sourceOs_, _sourceOsVersion_, _sourceClientType_ parameters to determine _destinationUrl_, _uri-launch_, and _downloadUrl_.
+6. The Destination Cloud responds to the _Query_ call with _true_ for approval, along with _destinationUrl_, _uri-warp_, _downloadUrl_, _location_, and _portalLimitations_.
 7. If the Destination Cloud returns a different _location_ value from what the Source Client requested in the _Query_ call, the Source Client SHOULD give the User the option to not create the Portal.
-8. If a _Download URI is_ returned in _uri-download_, the Source Client MAY give the User the option to download the Destination Client.
-9. The Source Client MAY cache _location_, _uri-destination_, _portal-limitations_, and _uri-launch_ with the Portal for future use.
-10. If the User calls uri-download the Query API SHOULD be called after the download to update the _Destination URI_ and _Launch URI_.  
+8. If a _Download URI is_ returned in _downloadUrl_, the Source Client MAY give the User the option to download the Destination Client.
+9. The Source Client MAY cache _location_, _destinationUrl_, _portalLimitations_, and _uri-launch_ with the Portal for future use.
+10. If the User calls downloadUrl the Query API SHOULD be called after the download to update the _Destination URI_ and _Launch URI_.  
 
 Use of the _Query_ API with _teleport-id_ as a status check right before calling the _Teleport_ API:
 1. The Source Service (Client, Cloud, or both) generates the mandatory and A.2 _Query_ parameters (see Table 1) and calls the _Query_ API on the _Portal URI_.
-2. When the Destination Cloud receives a _Query_ API with A.2 parameters it uses the _teleport-id, user-id, source-characteristics,_ and _assets_ parameters to determine if the Teleport is allowed.
+2. When the Destination Cloud receives a _Query_ API with A.2 parameters it uses the _teleport-id, userId, source-characteristics,_ and _assets_ parameters to determine if the Teleport is allowed.
 3. If the Teleport is not allowed (e.g.- the User is blocked), then the Destination Cloud SHALL return _false_ for the _approval_ return value and an optional explanation in the _error_ return value. The remaining steps SHALL be skipped.
-4. The Destination Cloud SHALL construct the _approved-assets_ parameter from the _source-characteristics_ and _assets_ parameters and store them, along with other A.2 parameters, with _teleport-id_.
+4. The Destination Cloud SHALL construct the _approvedAssets_ parameter from the _sourceCharacteristics_ and _assets_ parameters and store them, along with other A.2 parameters, with _teleport-id_.
 5. The Destination Cloud SHALL return the required parameters to the Source Service.
 6. The Source Client calls the _Teleport URI_ with _teleport-id_ to initiate the Teleport.  
 
@@ -396,13 +455,12 @@ The parameters of the _Teleport_ API Call are defined in Table 3:
 _Table 3: Parameters for the Teleport API Call_
 | **Parameter** | **Type** | **Description** | **Status** |
 | --- | --- | --- | --- |
-| teleport-id | Integer | 128-bit integer randomly generated by the Source Client when Teleportation is initiated | M   |
-| teleport-pin | Integer | A 2-digit decimal number randomly generated by the Source Client when Teleportation is initiated | O   |
-| user-id | Text | ID of the User in the Originating Service | O   |
-| launch-client | Boolean | _true_ if Destination Service should launch the Destination Client, _false_ if the Source Client will launch the Destination Client. Default is _false._ | O   |
-| uri-destination | Text | Destination URI | O   |
-| uri-source-ack | Text | URI (called by Destination Service if teleport is successful) | O   |
-| uri-source-nack | Text | URI (called by Destination Service if teleport is unsuccessful) | O   |
+| teleportId | Integer | 128-bit integer randomly generated by the Source Client when Teleportation is initiated | M   |
+| teleportPin | Integer | A 2-digit decimal number randomly generated by the Source Client when Teleportation is initiated | O   |
+| userId | Text | ID of the User in the Originating Service | O   |
+| launchClient | Boolean | _true_ if Destination Service should launch the Destination Client, _false_ if the Source Client will launch the Destination Client. Default is _false._ | O   |
+| sourceAckUrl | Text | URI (called by Destination Service if teleport is successful) | O   |
+| sourceNackUrl | Text | URI (called by Destination Service if teleport is unsuccessful) | O   |
 | assets | Object | Reserved for Future Use | O   |
   
 The returned fields within the _Teleport_ API Response are defined in Table 4:  
@@ -414,16 +472,16 @@ _Table 4: Parameters for Teleport API Response_
 | error | Text | 	| O   |
 
 The mode of operation for the _Teleport_ API is described below:
-1. The Source Service (Client, Cloud, or both) SHALL retrieve _teleport-id_ _teleport-pin_.
-2. The Source Client SHOULD instruct the User to take note of _teleport-pin_.
+1. The Source Service (Client, Cloud, or both) SHALL retrieve _teleportPin_.
+2. The Source Client SHOULD instruct the User to take note of _teleportPin_.
 3. The Source Service SHALL call the _Teleport_ API at the _Destination URI_ with relevant parameters (see Table 3). If the _Destination URI_ contains parameters (such as _location_), these parameters SHALL be passed with the _Teleport_ API call. The Destination Service MAY require a transaction fee for using the API (Section 5.8). Note: Transaction fees discourage DDoS attacks.
-4. When the Destination Service receives the _Teleport API_ call it retrieves the cached information sent to it via the _Query_ API call based on the _teleport-id_ and makes sure the _Teleport_ API was called within the _expiration_ time. If not, it responds to the _Teleport_ API call with _false_ for the _approval_ return parameter and an optional explanation in the _error_ return value.
+4. When the Destination Service receives the _Teleport API_ call it retrieves the cached information sent to it via the _Query_ API call based on the _teleportId_ and makes sure the _Teleport_ API was called within the _expiration_ time. If not, it responds to the _Teleport_ API call with _false_ for the _approval_ return parameter and an optional explanation in the _error_ return value.
 5. If the Teleport is valid, the Destination Service stores _any parameters_ with the rest of the parameters stored with _teleport-id_.
 6. The Destination Client SHOULD show the _teleport-pin_ to the User so the User can confirm the validity of the teleportation before logging in.
 7. The Destination Cloud and Source Service SHOULD work with the Asset Transfer Framework, defined in Section 7.8, to complete the teleportation.
 8. The Destination Service responds to the _Teleport_ call with _true_ for approval.
-9. The Destination Service SHALL call the _uri-source-ack_ if the Teleport is successful or the _uri-source-nack_ if the teleportation is unsuccessful.
-10. The Source Service SHOULD authenticate the _uri-source-ack_ or _uri-source-nack_ calls from the Destination Client and then SHALL act appropriately.  
+9. The Destination Service SHALL call the _sourceAckUrl_ if the Teleport is successful or the _sourceNackUrl_ if the teleportation is unsuccessful.
+10. The Source Service SHOULD authenticate the _sourceAckUrl_ or _sourceNackUrl_ calls from the Destination Client and then SHALL act appropriately.  
 
 Example _Teleport_ API Calls and Responses are provided in Section 6.2.
 
